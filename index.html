@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hamsa ❤️ Pradeep</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg,#ffdde1,#ee9ca7);
+  overflow-x:hidden;
+  color:#333;
+}
+
+/* Hearts */
+.heart {
+  position: fixed;
+  bottom: -20px;
+  font-size: 22px;
+  animation: float 8s linear infinite;
+}
+@keyframes float {
+  0% { transform: translateY(0); opacity:0; }
+  20% { opacity:1; }
+  100% { transform: translateY(-110vh); opacity:0; }
+}
+
+/* Hero */
+header {
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+}
+
+.hero {
+  background: rgba(255,255,255,0.95);
+  padding:50px;
+  border-radius:30px;
+  max-width:850px;
+  animation: fadeIn 2s;
+}
+
+.hero h1 {
+  font-family:"Playfair Display",serif;
+  font-size:3rem;
+  color:#c0392b;
+}
+.hero span { color:#e84393; }
+
+.hero p {
+  font-size:1.15rem;
+  margin-top:15px;
+  line-height:1.8;
+}
+
+/* Proposal */
+section {
+  padding:60px 20px;
+  max-width:1000px;
+  margin:auto;
+}
+
+.proposal {
+  background:white;
+  border-radius:30px;
+  padding:50px;
+  text-align:center;
+}
+
+.proposal h2 {
+  font-family:"Playfair Display",serif;
+  font-size:2.6rem;
+  color:#e84393;
+}
+
+.buttons {
+  margin-top:30px;
+  position:relative;
+}
+
+button {
+  padding:15px 40px;
+  font-size:1.05rem;
+  border:none;
+  border-radius:30px;
+  cursor:pointer;
+}
+
+.yes {
+  background:#e84393;
+  color:white;
+}
+
+.no {
+  background:#dfe6e9;
+  position:absolute;
+}
+
+/* Hidden Letter */
+#letter {
+  display:none;
+  margin-top:40px;
+  font-size:1.15rem;
+  line-height:1.8;
+  animation: fadeIn 2s;
+}
+
+/* Fireworks */
+.firework {
+  position:fixed;
+  width:6px;
+  height:6px;
+  background:red;
+  border-radius:50%;
+  animation: explode 1s ease-out forwards;
+}
+
+@keyframes explode {
+  to {
+    transform: translate(var(--x), var(--y));
+    opacity:0;
+  }
+}
+
+footer {
+  text-align:center;
+  padding:30px;
+  opacity:0.8;
+}
+
+@keyframes fadeIn {
+  from { opacity:0; transform:translateY(20px); }
+  to { opacity:1; transform:translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC -->
+<audio autoplay loop>
+  <source src="https://cdn.pixabay.com/audio/2023/02/14/audio_25c27a36c6.mp3">
+</audio>
+
+<!-- HEARTS -->
+<script>
+setInterval(() => {
+  const h = document.createElement("div");
+  h.className = "heart";
+  h.innerHTML = "💖";
+  h.style.left = Math.random()*100 + "vw";
+  h.style.animationDuration = (6 + Math.random()*4) + "s";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),9000);
+}, 300);
+</script>
+
+<header>
+  <div class="hero">
+    <h1>Hamsa <span>❤️</span> Pradeep</h1>
+    <p>
+      In every lifetime, in every universe,  
+      I would still choose you.
+    </p>
+  </div>
+</header>
+
+<section>
+  <div class="proposal">
+    <h2>Will You Marry Me? 💍</h2>
+    <p>
+      I want to love you in the quiet moments,  
+      and hold your hand through every storm.
+    </p>
+
+    <div class="buttons">
+      <button class="yes" onclick="sayYes()">Yes 💖</button>
+      <button class="no" id="noBtn">No 🙈</button>
+    </div>
+
+    <div id="letter">
+      <h3>💌 My Promise To You</h3>
+      <p>
+        Hamsa,<br><br>
+        I promise to love you endlessly,  
+        laugh with you daily,  
+        stand by you always,  
+        and choose you — every single day.<br><br>
+        Forever yours,<br>
+        <strong>Pradeep ❤️</strong>
+      </p>
+      <h2>🎉 SHE SAID YES! 🎉</h2>
+    </div>
+  </div>
+</section>
+
+<footer>
+  A forever beginning ❤️
+</footer>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+noBtn.addEventListener("mouseover", () => {
+  noBtn.style.transform =
+    `translate(${Math.random()*200-100}px, ${Math.random()*100-50}px)`;
+});
+
+function sayYes() {
+  document.getElementById("letter").style.display = "block";
+  fireworks();
+}
+
+function fireworks() {
+  for(let i=0;i<80;i++){
+    const f = document.createElement("div");
+    f.className = "firework";
+    f.style.left = "50vw";
+    f.style.top = "50vh";
+    f.style.setProperty("--x", `${Math.random()*600-300}px`);
+    f.style.setProperty("--y", `${Math.random()*600-300}px`);
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),1000);
+  }
+}
+</script>
+
+</body>
+</html>
