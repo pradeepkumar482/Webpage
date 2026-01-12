@@ -8,224 +8,308 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
-* { margin:0; padding:0; box-sizing:border-box; }
+*{margin:0;padding:0;box-sizing:border-box}
 
-body {
-  font-family: "Poppins", sans-serif;
-  background: linear-gradient(135deg,#ffdde1,#ee9ca7);
-  overflow-x:hidden;
+body{
+  font-family:Poppins,sans-serif;
+  background:linear-gradient(135deg,#ffdde1,#ee9ca7);
   color:#333;
+  overflow-x:hidden;
 }
 
-/* Hearts */
-.heart {
-  position: fixed;
-  bottom: -20px;
-  font-size: 22px;
-  animation: float 8s linear infinite;
+/* Floating hearts */
+.heart{
+  position:fixed;
+  bottom:-20px;
+  font-size:22px;
+  animation:float 8s linear infinite;
 }
-@keyframes float {
-  0% { transform: translateY(0); opacity:0; }
-  20% { opacity:1; }
-  100% { transform: translateY(-110vh); opacity:0; }
+@keyframes float{
+  0%{opacity:0}
+  20%{opacity:1}
+  100%{transform:translateY(-120vh);opacity:0}
+}
+
+/* Touch hearts */
+.touch{
+  position:fixed;
+  font-size:20px;
+  animation:fadeUp 1.2s forwards;
+}
+@keyframes fadeUp{
+  to{transform:translateY(-40px);opacity:0}
 }
 
 /* Hero */
-header {
+header{
   min-height:100vh;
   display:flex;
   justify-content:center;
   align-items:center;
-  text-align:center;
   padding:20px;
+  text-align:center;
 }
 
-.hero {
-  background: rgba(255,255,255,0.95);
-  padding:50px;
+.hero{
+  background:rgba(255,255,255,0.96);
+  padding:55px;
   border-radius:30px;
   max-width:850px;
-  animation: fadeIn 2s;
+  animation:fadeIn 2s;
 }
 
-.hero h1 {
-  font-family:"Playfair Display",serif;
+.hero h1{
+  font-family:"Playfair Display";
   font-size:3rem;
   color:#c0392b;
 }
-.hero span { color:#e84393; }
 
-.hero p {
-  font-size:1.15rem;
+.hero p{
+  font-size:1.2rem;
   margin-top:15px;
-  line-height:1.8;
 }
+
+#typing{
+  margin-top:25px;
+  font-style:italic;
+  color:#e84393;
+  min-height:30px;
+}
+
+/* Slideshow */
+.slideshow{
+  margin:40px auto;
+  max-width:600px;
+}
+.slideshow img{
+  width:100%;
+  border-radius:20px;
+  display:none;
+}
+.slideshow img.active{display:block}
 
 /* Proposal */
-section {
-  padding:60px 20px;
-  max-width:1000px;
-  margin:auto;
-}
+section{padding:60px 20px}
 
-.proposal {
-  background:white;
+.proposal{
+  background:#fff;
   border-radius:30px;
-  padding:50px;
+  padding:55px;
+  max-width:900px;
+  margin:auto;
   text-align:center;
 }
 
-.proposal h2 {
-  font-family:"Playfair Display",serif;
-  font-size:2.6rem;
+.proposal h2{
+  font-family:"Playfair Display";
+  font-size:2.7rem;
   color:#e84393;
 }
 
-.buttons {
-  margin-top:30px;
-  position:relative;
+#caption{
+  margin-top:25px;
+  color:#c0392b;
+  min-height:35px;
 }
 
-button {
-  padding:15px 40px;
-  font-size:1.05rem;
+.buttons{margin-top:35px;position:relative}
+
+button{
+  padding:16px 45px;
+  font-size:1.1rem;
   border:none;
   border-radius:30px;
   cursor:pointer;
+  transition:.3s;
 }
 
-.yes {
-  background:#e84393;
-  color:white;
-}
+.yes{background:#e84393;color:white}
+.yes:hover{transform:scale(1.05)}
 
-.no {
+.no{
   background:#dfe6e9;
   position:absolute;
 }
 
-/* Hidden Letter */
-#letter {
+/* Ring */
+#ring{
+  font-size:70px;
+  margin:30px 0;
+  animation:pulse 1.5s infinite;
+}
+@keyframes pulse{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.15)}
+  100%{transform:scale(1)}
+}
+
+/* Letter */
+#letter{
   display:none;
-  margin-top:40px;
-  font-size:1.15rem;
-  line-height:1.8;
-  animation: fadeIn 2s;
+  margin-top:45px;
+  line-height:1.9;
 }
 
 /* Fireworks */
-.firework {
+.firework{
   position:fixed;
   width:6px;
   height:6px;
-  background:red;
+  background:#e84393;
   border-radius:50%;
-  animation: explode 1s ease-out forwards;
+  animation:explode 1s forwards;
+}
+@keyframes explode{
+  to{transform:translate(var(--x),var(--y));opacity:0}
 }
 
-@keyframes explode {
-  to {
-    transform: translate(var(--x), var(--y));
-    opacity:0;
-  }
-}
-
-footer {
+footer{
   text-align:center;
   padding:30px;
-  opacity:0.8;
+  opacity:.8;
 }
 
-@keyframes fadeIn {
-  from { opacity:0; transform:translateY(20px); }
-  to { opacity:1; transform:translateY(0); }
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
 }
 </style>
 </head>
 
 <body>
 
-<!-- MUSIC -->
 <audio autoplay loop>
-  <source src="https://cdn.pixabay.com/audio/2023/02/14/audio_25c27a36c6.mp3">
+<source src="https://cdn.pixabay.com/audio/2023/02/14/audio_25c27a36c6.mp3">
 </audio>
 
-<!-- HEARTS -->
 <script>
-setInterval(() => {
-  const h = document.createElement("div");
-  h.className = "heart";
-  h.innerHTML = "💖";
-  h.style.left = Math.random()*100 + "vw";
-  h.style.animationDuration = (6 + Math.random()*4) + "s";
+// floating hearts
+setInterval(()=>{
+  let h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="💖";
+  h.style.left=Math.random()*100+"vw";
   document.body.appendChild(h);
   setTimeout(()=>h.remove(),9000);
-}, 300);
+},250);
+
+// touch hearts
+document.addEventListener("click",e=>{
+  let t=document.createElement("div");
+  t.className="touch";
+  t.innerHTML="💗";
+  t.style.left=e.clientX+"px";
+  t.style.top=e.clientY+"px";
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(),1200);
+});
 </script>
 
 <header>
   <div class="hero">
-    <h1>Hamsa <span>❤️</span> Pradeep</h1>
-    <p>
-      In every lifetime, in every universe,  
-      I would still choose you.
-    </p>
+    <h1>Hamsa ❤️ Pradeep</h1>
+    <p>You are my favorite thought, my safest place, my forever.</p>
+    <div id="typing"></div>
+
+    <div class="slideshow">
+      <!-- Replace images with your photos -->
+      <img src="https://picsum.photos/600/400?1" class="active">
+      <img src="https://picsum.photos/600/400?2">
+      <img src="https://picsum.photos/600/400?3">
+    </div>
   </div>
 </header>
 
 <section>
   <div class="proposal">
-    <h2>Will You Marry Me? 💍</h2>
-    <p>
-      I want to love you in the quiet moments,  
-      and hold your hand through every storm.
-    </p>
+    <h2>Will You Marry Me?</h2>
+    <div id="ring">💍</div>
+    <div id="caption"></div>
 
     <div class="buttons">
-      <button class="yes" onclick="sayYes()">Yes 💖</button>
-      <button class="no" id="noBtn">No 🙈</button>
+      <button class="yes" onclick="yes()">Yes 💖</button>
+      <button class="no" id="no">No 🙈</button>
     </div>
 
     <div id="letter">
-      <h3>💌 My Promise To You</h3>
+      <h3>💌 My Forever Promise</h3>
       <p>
         Hamsa,<br><br>
-        I promise to love you endlessly,  
-        laugh with you daily,  
-        stand by you always,  
-        and choose you — every single day.<br><br>
-        Forever yours,<br>
+        Loving you feels natural, effortless, meant to be.<br>
+        I promise to choose you on good days and bad days,
+        in laughter and in silence.<br><br>
+        With you, I’ve found my home, my peace, my forever.<br><br>
+        Always yours,<br>
         <strong>Pradeep ❤️</strong>
       </p>
-      <h2>🎉 SHE SAID YES! 🎉</h2>
+      <h2>🎉 SHE SAID YES 🎉</h2>
+      <p style="color:#e84393">My life just became complete 💞</p>
     </div>
   </div>
 </section>
 
 <footer>
-  A forever beginning ❤️
+  A love story that never ends ✨
 </footer>
 
 <script>
-const noBtn = document.getElementById("noBtn");
-noBtn.addEventListener("mouseover", () => {
-  noBtn.style.transform =
-    `translate(${Math.random()*200-100}px, ${Math.random()*100-50}px)`;
+// typing effect
+const words=[
+  "In every universe, I would find you…",
+  "And fall in love all over again.",
+  "You are my always ❤️"
+];
+let w=0,c=0;
+setInterval(()=>{
+  if(w<words.length){
+    document.getElementById("typing").innerText=
+      words[w].slice(0,c++);
+    if(c>words[w].length){w++;c=0}
+  }
+},120);
+
+// slideshow
+let slides=document.querySelectorAll(".slideshow img");
+let s=0;
+setInterval(()=>{
+  slides[s].classList.remove("active");
+  s=(s+1)%slides.length;
+  slides[s].classList.add("active");
+},3000);
+
+// no button
+const no=document.getElementById("no");
+no.addEventListener("mouseover",()=>{
+  no.style.transform=`translate(${Math.random()*200-100}px,${Math.random()*100-50}px)`;
 });
 
-function sayYes() {
-  document.getElementById("letter").style.display = "block";
-  fireworks();
+// captions + yes
+const caps=[
+  "My heart already knows the answer 💓",
+  "You are my greatest blessing 🌸",
+  "Forever sounds perfect with you ✨",
+  "Say yes… and be my always 💍"
+];
+let i=0;
+
+function yes(){
+  if(i<caps.length){
+    caption.innerText=caps[i++];
+  }else{
+    letter.style.display="block";
+    fireworks();
+  }
 }
 
-function fireworks() {
-  for(let i=0;i<80;i++){
-    const f = document.createElement("div");
-    f.className = "firework";
-    f.style.left = "50vw";
-    f.style.top = "50vh";
-    f.style.setProperty("--x", `${Math.random()*600-300}px`);
-    f.style.setProperty("--y", `${Math.random()*600-300}px`);
+// fireworks
+function fireworks(){
+  for(let i=0;i<90;i++){
+    let f=document.createElement("div");
+    f.className="firework";
+    f.style.left="50vw";
+    f.style.top="50vh";
+    f.style.setProperty("--x",`${Math.random()*700-350}px`);
+    f.style.setProperty("--y",`${Math.random()*700-350}px`);
     document.body.appendChild(f);
     setTimeout(()=>f.remove(),1000);
   }
