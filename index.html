@@ -1,320 +1,715 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hamsa ❤️ Pradeep</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamsa & Pradeep | A Forever Story</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap"
+        rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
+    <style>
+        :root {
+            --primary: #c2185b;
+            /* Deep Pink */
+            --primary-light: #f48fb1;
+            --rose-gold: #b76e79;
+            --bg-gradient: linear-gradient(135deg, #fff0f5 0%, #fff 100%);
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.9);
+            --shadow: 0 10px 30px rgba(194, 24, 91, 0.15);
+        }
 
-body{
-  font-family:Poppins,sans-serif;
-  background:linear-gradient(135deg,#ffdde1,#ee9ca7);
-  color:#333;
-  overflow-x:hidden;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23c2185b"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') 12 12, auto;
+        }
 
-/* Floating hearts */
-.heart{
-  position:fixed;
-  bottom:-20px;
-  font-size:22px;
-  animation:float 8s linear infinite;
-}
-@keyframes float{
-  0%{opacity:0}
-  20%{opacity:1}
-  100%{transform:translateY(-120vh);opacity:0}
-}
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #ffe3e8;
+            background-image: var(--bg-gradient);
+            min-height: 100vh;
+            color: #4a4a4a;
+            overflow-x: hidden;
+            position: relative;
+        }
 
-/* Touch hearts */
-.touch{
-  position:fixed;
-  font-size:20px;
-  animation:fadeUp 1.2s forwards;
-}
-@keyframes fadeUp{
-  to{transform:translateY(-40px);opacity:0}
-}
+        /* --- Floating Hearts (Soft Sway) --- */
+        .heart-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
 
-/* Hero */
-header{
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:20px;
-  text-align:center;
-}
+        .heart-shape {
+            position: absolute;
+            color: rgba(233, 30, 99, 0.1);
+            font-size: 1.5rem;
+            animation: floatUp linear infinite, sway ease-in-out infinite alternate;
+        }
 
-.hero{
-  background:rgba(255,255,255,0.96);
-  padding:55px;
-  border-radius:30px;
-  max-width:850px;
-  animation:fadeIn 2s;
-}
+        @keyframes floatUp {
+            to {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
 
-.hero h1{
-  font-family:"Playfair Display";
-  font-size:3rem;
-  color:#c0392b;
-}
+        @keyframes sway {
+            from {
+                margin-left: -50px;
+            }
 
-.hero p{
-  font-size:1.2rem;
-  margin-top:15px;
-}
+            to {
+                margin-left: 50px;
+            }
+        }
 
-#typing{
-  margin-top:25px;
-  font-style:italic;
-  color:#e84393;
-  min-height:30px;
-}
+        /* --- Magical Cursor Trail --- */
+        .sparkle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            background: radial-gradient(circle, #ff80ab, transparent);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            animation: fadeOut 1s forwards;
+        }
 
-/* Slideshow */
-.slideshow{
-  margin:40px auto;
-  max-width:600px;
-}
-.slideshow img{
-  width:100%;
-  border-radius:20px;
-  display:none;
-}
-.slideshow img.active{display:block}
+        @keyframes fadeOut {
+            to {
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
 
-/* Proposal */
-section{padding:60px 20px}
+        /* --- Typography --- */
+        h1,
+        h2,
+        h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);
+        }
 
-.proposal{
-  background:#fff;
-  border-radius:30px;
-  padding:55px;
-  max-width:900px;
-  margin:auto;
-  text-align:center;
-}
+        .cursive {
+            font-family: 'Great Vibes', cursive;
+            color: var(--rose-gold);
+            font-size: 2.5rem;
+        }
 
-.proposal h2{
-  font-family:"Playfair Display";
-  font-size:2.7rem;
-  color:#e84393;
-}
+        /* --- Components --- */
+        .glass-container {
+            position: relative;
+            z-index: 2;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            max-width: 900px;
+            width: 90%;
+            margin: 2rem auto;
+            text-align: center;
+        }
 
-#caption{
-  margin-top:25px;
-  color:#c0392b;
-  min-height:35px;
-}
+        /* --- Hero --- */
+        .hero {
+            padding: 4rem 1rem;
+        }
 
-.buttons{margin-top:35px;position:relative}
+        .hero h1 {
+            font-size: 3.5rem;
+            margin: 0.5rem 0;
+            background: linear-gradient(45deg, #c2185b, #e91e63);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-button{
-  padding:16px 45px;
-  font-size:1.1rem;
-  border:none;
-  border-radius:30px;
-  cursor:pointer;
-  transition:.3s;
-}
+        /* Slideshow */
+        .slideshow-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            height: 350px;
+            margin: 2rem auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
 
-.yes{background:#e84393;color:white}
-.yes:hover{transform:scale(1.05)}
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
 
-.no{
-  background:#dfe6e9;
-  position:absolute;
-}
+        .slide.active {
+            opacity: 1;
+            transform: scale(1.05);
+            transition: opacity 1s ease, transform 6s linear;
+        }
 
-/* Ring */
-#ring{
-  font-size:70px;
-  margin:30px 0;
-  animation:pulse 1.5s infinite;
-}
-@keyframes pulse{
-  0%{transform:scale(1)}
-  50%{transform:scale(1.15)}
-  100%{transform:scale(1)}
-}
+        /* --- Suspense Gift Section --- */
+        .gift-section {
+            padding: 4rem 1rem;
+        }
 
-/* Letter */
-#letter{
-  display:none;
-  margin-top:45px;
-  line-height:1.9;
-}
+        .gift-instructions {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            color: #666;
+        }
 
-/* Fireworks */
-.firework{
-  position:fixed;
-  width:6px;
-  height:6px;
-  background:#e84393;
-  border-radius:50%;
-  animation:explode 1s forwards;
-}
-@keyframes explode{
-  to{transform:translate(var(--x),var(--y));opacity:0}
-}
+        .gifts-row {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
 
-footer{
-  text-align:center;
-  padding:30px;
-  opacity:.8;
-}
+        .gift-box-wrapper {
+            position: relative;
+            cursor: pointer;
+            text-align: center;
+        }
 
-@keyframes fadeIn{
-  from{opacity:0;transform:translateY(20px)}
-  to{opacity:1;transform:translateY(0)}
-}
-</style>
+        .gift-box {
+            font-size: 4rem;
+            filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.1));
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .gift-box.locked {
+            filter: grayscale(100%);
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .gift-box.open {
+            opacity: 0.5;
+            transform: scale(0.9);
+        }
+
+        .gift-box:not(.locked):hover {
+            transform: translateY(-10px) rotate(-5deg);
+        }
+
+        .gift-box.shake {
+            animation: shake 0.5s;
+        }
+
+        .gift-label {
+            margin-top: 10px;
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 1.1rem;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.5s;
+        }
+
+        .gift-box:not(.locked)+.gift-label {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(-10deg);
+            }
+
+            75% {
+                transform: rotate(10deg);
+            }
+        }
+
+        /* --- Infinite Love Reasons --- */
+        .love-reason-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            margin-top: 2rem;
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .reason-text {
+            font-size: 1.3rem;
+            font-style: italic;
+            color: #555;
+            margin-bottom: 1.5rem;
+            transition: opacity 0.5s;
+        }
+
+        .reason-btn {
+            background: linear-gradient(to right, #f48fb1, #f06292);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(244, 143, 177, 0.4);
+            transition: transform 0.2s;
+        }
+
+        .reason-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* --- Modals for Reveal --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            animation: bounceIn 0.8s;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .modal-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .modal-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            transition: transform 0.2s;
+        }
+
+        .modal-btn:hover {
+            transform: scale(1.05);
+            background: #ad1457;
+        }
+
+        /* --- Final Proposal Specifics --- */
+        .ring-icon {
+            font-size: 5rem;
+            margin: 1rem 0;
+            animation: pulse 2s infinite;
+            display: block;
+        }
+
+        .proposal-btns {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .btn-yes {
+            background: linear-gradient(45deg, #c2185b, #e91e63);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(233, 30, 99, 0.4);
+        }
+
+        .btn-no {
+            background: #eee;
+            color: #555;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            position: relative;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes bounceIn {
+            from {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .gifts-row {
+                gap: 1.5rem;
+            }
+
+            .gift-box {
+                font-size: 3rem;
+            }
+
+            .slideshow-wrapper {
+                height: 250px;
+            }
+
+            .proposal-btns {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<audio autoplay loop>
-<source src="https://cdn.pixabay.com/audio/2023/02/14/audio_25c27a36c6.mp3">
-</audio>
+    <!-- Music Control -->
+    <!-- Music Control -->
+    <button id="musicToggle" style="
+        position: fixed; bottom: 20px; right: 20px; z-index: 1000; background: rgba(255, 255, 255, 0.9); padding: 10px; border-radius: 50%;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2); border: none; font-size: 1.5rem; width: 60px; height: 60px; cursor: pointer; transition: transform 0.3s;
+    ">🎵</button>
 
-<script>
-// floating hearts
-setInterval(()=>{
-  let h=document.createElement("div");
-  h.className="heart";
-  h.innerHTML="💖";
-  h.style.left=Math.random()*100+"vw";
-  document.body.appendChild(h);
-  setTimeout(()=>h.remove(),9000);
-},250);
+    <!-- Audio Sources -->
+    <audio id="bgMusic" loop>
+        <source src="https://ia800501.us.archive.org/31/items/CanonInD_201607/Canon%20in%20D.mp3" type="audio/mp3">
+        <!-- Fallback source -->
+        <source src="https://cdn.pixabay.com/audio/2022/01/18/audio_d0a13f69d2.mp3" type="audio/mp3">
+    </audio>
 
-// touch hearts
-document.addEventListener("click",e=>{
-  let t=document.createElement("div");
-  t.className="touch";
-  t.innerHTML="💗";
-  t.style.left=e.clientX+"px";
-  t.style.top=e.clientY+"px";
-  document.body.appendChild(t);
-  setTimeout(()=>t.remove(),1200);
-});
-</script>
-
-<header>
-  <div class="hero">
-    <h1>Hamsa ❤️ Pradeep</h1>
-    <p>You are my favorite thought, my safest place, my forever.</p>
-    <div id="typing"></div>
-
-    <div class="slideshow">
-      <!-- Replace images with your photos -->
-      <img src="https://picsum.photos/600/400?1" class="active">
-      <img src="https://picsum.photos/600/400?2">
-      <img src="https://picsum.photos/600/400?3">
-    </div>
-  </div>
-</header>
-
-<section>
-  <div class="proposal">
-    <h2>Will You Marry Me?</h2>
-    <div id="ring">💍</div>
-    <div id="caption"></div>
-
-    <div class="buttons">
-      <button class="yes" onclick="yes()">Yes 💖</button>
-      <button class="no" id="no">No 🙈</button>
+    <!-- Welcome Overlay -->
+    <div id="welcome-overlay" style="
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+        background: rgba(255, 240, 245, 0.98); z-index: 3000; 
+        display: flex; flex-direction: column; justify-content: center; align-items: center;
+        transition: opacity 1s ease;
+    ">
+        <h1 class="cursive" style="font-size: 4rem; margin-bottom: 2rem;">Hamsa & Pradeep</h1>
+        <p style="font-size: 1.5rem; margin-bottom: 3rem; color: #555;">A special surprise awaits...</p>
+        <button id="enter-btn" style="
+            background: linear-gradient(45deg, #c2185b, #e91e63); color: white; 
+            padding: 15px 40px; border-radius: 50px; font-size: 1.5rem; border: none; cursor: pointer;
+            box-shadow: 0 5px 20px rgba(194, 24, 91, 0.4); animation: pulse 2s infinite;
+        ">Click to Enter ✨</button>
     </div>
 
-    <div id="letter">
-      <h3>💌 My Forever Promise</h3>
-      <p>
-        Hamsa,<br><br>
-        Loving you feels natural, effortless, meant to be.<br>
-        I promise to choose you on good days and bad days,
-        in laughter and in silence.<br><br>
-        With you, I’ve found my home, my peace, my forever.<br><br>
-        Always yours,<br>
-        <strong>Pradeep ❤️</strong>
-      </p>
-      <h2>🎉 SHE SAID YES 🎉</h2>
-      <p style="color:#e84393">My life just became complete 💞</p>
+    <!-- Background -->
+    <div class="heart-bg" id="heart-bg"></div>
+
+    <!-- Hero -->
+    <section class="glass-container hero">
+        <h3 class="cursive animate__animated animate__fadeIn">The Story of</h3>
+        <h1 class="animate__animated animate__zoomIn">Hamsa & Pradeep</h1>
+        <p style="font-size: 1.2rem; margin-top: 1rem; color: #666;">"You are my favorite thought, my safest place, my
+            forever."</p>
+
+        <div class="slideshow-wrapper">
+            <div class="slide active"
+                style="background-image: url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=2574&auto=format&fit=crop');">
+            </div>
+            <div class="slide"
+                style="background-image: url('https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?q=80&w=2566&auto=format&fit=crop');">
+            </div>
+            <div class="slide"
+                style="background-image: url('https://images.unsplash.com/photo-1522673607200-1645062cd958?q=80&w=2660&auto=format&fit=crop');">
+            </div>
+        </div>
+    </section>
+
+    <!-- Infinite Reasons Section -->
+    <section class="glass-container">
+        <h2 class="cursive">A Million Reasons Why</h2>
+        <div class="love-reason-card">
+            <p class="reason-text" id="reasonText">Because you make me the happiest person alive...</p>
+            <button class="reason-btn" onclick="nextReason()">Tell me another 💕</button>
+        </div>
+    </section>
+
+    <!-- Gift Reveal Section -->
+    <section class="glass-container gift-section" id="surprises">
+        <h2 class="section-title" style="margin-bottom: 1rem;">Surprises for You...</h2>
+        <p class="gift-instructions">Open the gifts one by one to unlock my heart ❤️</p>
+
+        <div class="gifts-row">
+            <div class="gift-box-wrapper" onclick="openGift(1)">
+                <div class="gift-box" id="gift-box-1">🎁</div>
+                <div class="gift-label">Step 1</div>
+            </div>
+            <div class="gift-box-wrapper" onclick="openGift(2)">
+                <div class="gift-box locked" id="gift-box-2">🎁</div>
+                <div class="gift-label">Step 2</div>
+            </div>
+            <div class="gift-box-wrapper" onclick="openGift(3)">
+                <div class="gift-box locked" id="gift-box-3">💍</div>
+                <div class="gift-label">The Question</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL 1: Memory -->
+    <div class="modal-overlay" id="modal-1">
+        <div class="modal-content">
+            <h2 class="cursive">Our Beautiful Journey</h2>
+            <img src="https://images.unsplash.com/photo-1511285560982-1351cdeb9821?q=80&w=2754&auto=format&fit=crop"
+                class="modal-img" alt="Memory">
+            <p>From the first moment we met, I knew my life would never be the same.</p>
+            <button class="modal-btn" onclick="closeModal(1)">Unlock Next Gift ✨</button>
+        </div>
     </div>
-  </div>
-</section>
 
-<footer>
-  A love story that never ends ✨
-</footer>
+    <!-- MODAL 2: Message -->
+    <div class="modal-overlay" id="modal-2">
+        <div class="modal-content">
+            <h2 class="cursive">My Promise</h2>
+            <div style="font-size: 3rem; margin: 1rem;">💌</div>
+            <p style="font-style: italic; font-size: 1.1rem; line-height: 1.8;">
+                "I promise to be your strength when you are weak,<br>
+                your laughter when you are sad,<br>
+                and your home when you are lost."
+            </p>
+            <button class="modal-btn" onclick="closeModal(2)">Reveal The Final Surprise 💖</button>
+        </div>
+    </div>
 
-<script>
-// typing effect
-const words=[
-  "In every universe, I would find you…",
-  "And fall in love all over again.",
-  "You are my always ❤️"
-];
-let w=0,c=0;
-setInterval(()=>{
-  if(w<words.length){
-    document.getElementById("typing").innerText=
-      words[w].slice(0,c++);
-    if(c>words[w].length){w++;c=0}
-  }
-},120);
+    <!-- MODAL 3: PROPOSAL -->
+    <div class="modal-overlay" id="modal-3">
+        <div class="modal-content" style="background: linear-gradient(to bottom, #fff, #ffebee);">
+            <div class="ring-icon">💍</div>
+            <h2 style="font-size: 2.5rem; margin-bottom: 0.5rem;">Hamsa...</h2>
+            <h1>Will You Marry Me?</h1>
+            <p style="color: #666; margin-top: 10px;">(Please say yes! 🙈)</p>
+            <div class="proposal-btns">
+                <button class="btn-yes" onclick="acceptProposal()">YES, I Will! 💖</button>
+                <button class="btn-no" id="btn-no" onmouseover="dodgeNo()">No</button>
+            </div>
+        </div>
+    </div>
 
-// slideshow
-let slides=document.querySelectorAll(".slideshow img");
-let s=0;
-setInterval(()=>{
-  slides[s].classList.remove("active");
-  s=(s+1)%slides.length;
-  slides[s].classList.add("active");
-},3000);
+    <!-- MODAL 4: SUCCESS -->
+    <div class="modal-overlay" id="modal-success">
+        <div class="modal-content text-center">
+            <h1 class="cursive" style="color:#d32f2f; font-size: 3.5rem;">She Said Yes! 🎉</h1>
+            <p style="font-size: 1.2rem; margin: 1rem 0;">My heart is yours, forever and always.</p>
+            <img src="https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif"
+                style="width: 100%; border-radius: 10px;">
+            <p style="margin-top: 1rem;">❤️ Pradeep & Hamsa ❤️</p>
+        </div>
+    </div>
 
-// no button
-const no=document.getElementById("no");
-no.addEventListener("mouseover",()=>{
-  no.style.transform=`translate(${Math.random()*200-100}px,${Math.random()*100-50}px)`;
-});
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 
-// captions + yes
-const caps=[
-  "My heart already knows the answer 💓",
-  "You are my greatest blessing 🌸",
-  "Forever sounds perfect with you ✨",
-  "Say yes… and be my always 💍"
-];
-let i=0;
+    <script>
+        // State
+        let currentStage = 1;
 
-function yes(){
-  if(i<caps.length){
-    caption.innerText=caps[i++];
-  }else{
-    letter.style.display="block";
-    fireworks();
-  }
-}
+        // --- Infinite Reasons ---
+        const reasons = [
+            "Because you are my best friend.",
+            "Because your smile makes my day.",
+            "Because you understand me like no one else.",
+            "Because you truly care about people.",
+            "Because of your beautiful eyes.",
+            "Because you make even boring things fun.",
+            "Because I can be myself around you.",
+            "Because you support my dreams.",
+            "Because you are simply perfect for me."
+        ];
+        function nextReason() {
+            const textEl = document.getElementById('reasonText');
+            textEl.style.opacity = '0';
+            setTimeout(() => {
+                const randomReason = reasons[Math.floor(Math.random() * reasons.length)];
+                textEl.innerText = randomReason;
+                textEl.style.opacity = '1';
+                spawnSparkle(window.innerWidth / 2, window.innerHeight / 2);
+            }, 500);
+        }
 
-// fireworks
-function fireworks(){
-  for(let i=0;i<90;i++){
-    let f=document.createElement("div");
-    f.className="firework";
-    f.style.left="50vw";
-    f.style.top="50vh";
-    f.style.setProperty("--x",`${Math.random()*700-350}px`);
-    f.style.setProperty("--y",`${Math.random()*700-350}px`);
-    document.body.appendChild(f);
-    setTimeout(()=>f.remove(),1000);
-  }
-}
-</script>
+        // --- Gift Logic ---
+        function openGift(stage) {
+            if (stage !== currentStage) {
+                if (stage < currentStage) return;
+                const box = document.getElementById(`gift-box-${stage}`);
+                box.classList.add('shake');
+                setTimeout(() => box.classList.remove('shake'), 500);
+                return;
+            }
+            const box = document.getElementById(`gift-box-${stage}`);
+            box.innerText = "✨"; box.classList.add('open');
+            setTimeout(() => {
+                document.getElementById(`modal-${stage}`).style.display = 'flex';
+                confetti({ particleCount: 50, spread: 50, origin: { y: 0.6 } });
+            }, 300);
+        }
 
+        function closeModal(stage) {
+            document.getElementById(`modal-${stage}`).style.display = 'none';
+            currentStage++;
+            const nextBox = document.getElementById(`gift-box-${currentStage}`);
+            if (nextBox) {
+                nextBox.classList.remove('locked');
+                document.getElementById('surprises').scrollIntoView({ behavior: 'smooth' });
+                nextBox.classList.add('shake');
+                setTimeout(() => nextBox.classList.remove('shake'), 1000);
+            }
+        }
+
+        function acceptProposal() {
+            document.getElementById('modal-3').style.display = 'none';
+            document.getElementById('modal-success').style.display = 'flex';
+            var duration = 5 * 1000; var end = Date.now() + duration;
+            (function frame() {
+                confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#c2185b', '#e91e63'] });
+                confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#c2185b', '#e91e63'] });
+                if (Date.now() < end) requestAnimationFrame(frame);
+            }());
+            document.getElementById("bgMusic").volume = 1.0;
+        }
+
+        const noBtn = document.getElementById('btn-no');
+        function dodgeNo() {
+            const x = Math.random() * 200 - 100; const y = Math.random() * 200 - 100;
+            noBtn.style.transform = `translate(${x}px, ${y}px)`;
+        }
+
+        /* --- Music (Welcome Overlay & Toggle) --- */
+        const music = document.getElementById("bgMusic");
+        const musicBtn = document.getElementById("musicToggle");
+        const welcomeOverlay = document.getElementById("welcome-overlay");
+        const enterBtn = document.getElementById("enter-btn");
+        let isPlaying = false;
+
+        // Enter Button Click
+        enterBtn.addEventListener('click', () => {
+            // Fade out overlay
+            welcomeOverlay.style.opacity = '0';
+            setTimeout(() => { welcomeOverlay.style.display = 'none'; }, 1000);
+
+            // Force Play
+            music.volume = 0.5;
+            music.play().then(() => {
+                isPlaying = true;
+                musicBtn.innerHTML = "🔇";
+                musicBtn.style.opacity = "1";
+            }).catch(e => {
+                console.log("Audio Error:", e);
+                alert("Please click the music button 🎵 if sound doesn't start!");
+            });
+        });
+
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause(); musicBtn.innerHTML = "🎵"; musicBtn.style.opacity = "0.7";
+            } else {
+                music.play(); musicBtn.innerHTML = "🔇"; musicBtn.style.opacity = "1";
+            }
+            isPlaying = !isPlaying;
+        }
+        musicBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleMusic(); });
+
+        /* --- Sparkle Trail & Hearts --- */
+        document.addEventListener('mousemove', function (e) {
+            if (Math.random() < 0.1) spawnSparkle(e.clientX, e.clientY);
+        });
+
+        function spawnSparkle(x, y) {
+            const sparkle = document.createElement('div');
+            sparkle.classList.add('sparkle');
+            sparkle.style.left = x + 'px'; sparkle.style.top = y + 'px';
+            document.body.appendChild(sparkle);
+            setTimeout(() => sparkle.remove(), 1000);
+        }
+
+        function createHearts() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-shape');
+            heart.innerHTML = '❤';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 5 + 10 + 's';
+            heart.style.opacity = Math.random() * 0.5;
+            document.getElementById('heart-bg').appendChild(heart);
+            setTimeout(() => heart.remove(), 15000);
+        }
+        setInterval(createHearts, 500);
+
+        // Slideshow
+        const slides = document.querySelectorAll('.slide');
+        let slideIdx = 0;
+        setInterval(() => {
+            slides[slideIdx].classList.remove('active');
+            slideIdx = (slideIdx + 1) % slides.length;
+            slides[slideIdx].classList.add('active');
+        }, 4000);
+
+    </script>
 </body>
+
 </html>
