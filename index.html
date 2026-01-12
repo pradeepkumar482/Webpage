@@ -3,170 +3,74 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hamsa ❤️ Pradeep</title>
+<title>For Hamsa ❤️</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 
 body{
   font-family:Poppins,sans-serif;
-  background:linear-gradient(135deg,#ffdde1,#ee9ca7);
-  color:#333;
-  overflow-x:hidden;
+  background:#fff5f7;
+  color:#2d3436;
+  overflow:hidden;
 }
 
-/* Floating hearts */
-.heart{
-  position:fixed;
-  bottom:-20px;
-  font-size:22px;
-  animation:float 8s linear infinite;
-}
-@keyframes float{
-  0%{opacity:0}
-  20%{opacity:1}
-  100%{transform:translateY(-120vh);opacity:0}
-}
-
-/* Touch hearts */
-.touch{
-  position:fixed;
-  font-size:20px;
-  animation:fadeUp 1.2s forwards;
-}
-@keyframes fadeUp{
-  to{transform:translateY(-40px);opacity:0}
-}
-
-/* Hero */
-header{
+.screen{
   min-height:100vh;
   display:flex;
   justify-content:center;
   align-items:center;
-  padding:20px;
+  padding:30px;
   text-align:center;
+  transition:1.2s;
 }
 
-.hero{
-  background:rgba(255,255,255,0.96);
-  padding:55px;
-  border-radius:30px;
-  max-width:850px;
+.card{
+  max-width:720px;
+  background:white;
+  border-radius:28px;
+  padding:50px;
+  box-shadow:0 30px 80px rgba(0,0,0,0.08);
   animation:fadeIn 2s;
 }
 
-.hero h1{
+h1{
   font-family:"Playfair Display";
-  font-size:3rem;
-  color:#c0392b;
+  font-size:2.8rem;
+  color:#e84393;
 }
 
-.hero p{
-  font-size:1.2rem;
-  margin-top:15px;
+p{
+  font-size:1.15rem;
+  line-height:1.9;
+  margin-top:20px;
 }
 
-#typing{
-  margin-top:25px;
+.whisper{
   font-style:italic;
-  color:#e84393;
-  min-height:30px;
-}
-
-/* Slideshow */
-.slideshow{
-  margin:40px auto;
-  max-width:600px;
-}
-.slideshow img{
-  width:100%;
-  border-radius:20px;
-  display:none;
-}
-.slideshow img.active{display:block}
-
-/* Proposal */
-section{padding:60px 20px}
-
-.proposal{
-  background:#fff;
-  border-radius:30px;
-  padding:55px;
-  max-width:900px;
-  margin:auto;
-  text-align:center;
-}
-
-.proposal h2{
-  font-family:"Playfair Display";
-  font-size:2.7rem;
-  color:#e84393;
-}
-
-#caption{
+  color:#d63031;
   margin-top:25px;
-  color:#c0392b;
-  min-height:35px;
+  opacity:.9;
 }
-
-.buttons{margin-top:35px;position:relative}
 
 button{
-  padding:16px 45px;
-  font-size:1.1rem;
+  margin-top:40px;
+  padding:14px 42px;
   border:none;
-  border-radius:30px;
-  cursor:pointer;
-  transition:.3s;
-}
-
-.yes{background:#e84393;color:white}
-.yes:hover{transform:scale(1.05)}
-
-.no{
-  background:#dfe6e9;
-  position:absolute;
-}
-
-/* Ring */
-#ring{
-  font-size:70px;
-  margin:30px 0;
-  animation:pulse 1.5s infinite;
-}
-@keyframes pulse{
-  0%{transform:scale(1)}
-  50%{transform:scale(1.15)}
-  100%{transform:scale(1)}
-}
-
-/* Letter */
-#letter{
-  display:none;
-  margin-top:45px;
-  line-height:1.9;
-}
-
-/* Fireworks */
-.firework{
-  position:fixed;
-  width:6px;
-  height:6px;
+  border-radius:40px;
   background:#e84393;
-  border-radius:50%;
-  animation:explode 1s forwards;
-}
-@keyframes explode{
-  to{transform:translate(var(--x),var(--y));opacity:0}
+  color:white;
+  font-size:1.05rem;
+  cursor:pointer;
+  transition:.4s;
 }
 
-footer{
-  text-align:center;
-  padding:30px;
-  opacity:.8;
+button:hover{transform:scale(1.05)}
+
+.fade{
+  animation:fadeIn 1.5s;
 }
 
 @keyframes fadeIn{
@@ -178,140 +82,77 @@ footer{
 
 <body>
 
-<audio autoplay loop>
-<source src="https://cdn.pixabay.com/audio/2023/02/14/audio_25c27a36c6.mp3">
+<audio id="music" loop>
+  <source src="https://cdn.pixabay.com/audio/2023/03/30/audio_9c90c3c4a1.mp3">
 </audio>
 
-<script>
-// floating hearts
-setInterval(()=>{
-  let h=document.createElement("div");
-  h.className="heart";
-  h.innerHTML="💖";
-  h.style.left=Math.random()*100+"vw";
-  document.body.appendChild(h);
-  setTimeout(()=>h.remove(),9000);
-},250);
-
-// touch hearts
-document.addEventListener("click",e=>{
-  let t=document.createElement("div");
-  t.className="touch";
-  t.innerHTML="💗";
-  t.style.left=e.clientX+"px";
-  t.style.top=e.clientY+"px";
-  document.body.appendChild(t);
-  setTimeout(()=>t.remove(),1200);
-});
-</script>
-
-<header>
-  <div class="hero">
-    <h1>Hamsa ❤️ Pradeep</h1>
-    <p>You are my favorite thought, my safest place, my forever.</p>
-    <div id="typing"></div>
-
-    <div class="slideshow">
-      <!-- Replace images with your photos -->
-      <img src="https://picsum.photos/600/400?1" class="active">
-      <img src="https://picsum.photos/600/400?2">
-      <img src="https://picsum.photos/600/400?3">
-    </div>
+<div class="screen" id="screen">
+  <div class="card fade" id="card">
+    <h1>Hamsa</h1>
+    <p>
+      Before I ask you anything…<br>
+      I want you to know something.
+    </p>
+    <button onclick="next()">Tap gently 💗</button>
   </div>
-</header>
+</div>
 
-<section>
-  <div class="proposal">
-    <h2>Will You Marry Me?</h2>
-    <div id="ring">💍</div>
-    <div id="caption"></div>
+<script>
+const steps = [
+`Every day, without trying,
+you become my calm.
+My favorite thought.
+My safest place.`,
 
-    <div class="buttons">
-      <button class="yes" onclick="yes()">Yes 💖</button>
-      <button class="no" id="no">No 🙈</button>
-    </div>
+`I notice the little things —
+the way you care,
+the way you feel deeply,
+the way you make ordinary moments beautiful.`,
 
-    <div id="letter">
-      <h3>💌 My Forever Promise</h3>
-      <p>
-        Hamsa,<br><br>
-        Loving you feels natural, effortless, meant to be.<br>
-        I promise to choose you on good days and bad days,
-        in laughter and in silence.<br><br>
-        With you, I’ve found my home, my peace, my forever.<br><br>
-        Always yours,<br>
-        <strong>Pradeep ❤️</strong>
+`I don’t love an idea of you.
+I love *you* —
+exactly as you are,
+exactly as you stand in front of me.`,
+
+`If life ever gets loud,
+or heavy,
+or uncertain…
+I want you to remember this:`,
+
+`You will never face anything alone again.
+Because my heart has already chosen you.`,
+
+`So this isn’t just a question…
+It’s a promise.`,
+
+`Will you marry me? 💍`
+];
+
+let i = 0;
+
+function next(){
+  if(i === 0){
+    document.getElementById("music").play();
+  }
+
+  if(i < steps.length){
+    document.getElementById("card").innerHTML = `
+      <p class="fade">${steps[i]}</p>
+      <button onclick="next()">${i === steps.length-1 ? "Yes… always ❤️" : "Tap again 💗"}</button>
+    `;
+    i++;
+  } else {
+    document.getElementById("card").innerHTML = `
+      <h1>Forever Begins Here</h1>
+      <p class="fade">
+        I choose you — in every lifetime,
+        in every version of the future,
+        without hesitation.
       </p>
-      <h2>🎉 SHE SAID YES 🎉</h2>
-      <p style="color:#e84393">My life just became complete 💞</p>
-    </div>
-  </div>
-</section>
-
-<footer>
-  A love story that never ends ✨
-</footer>
-
-<script>
-// typing effect
-const words=[
-  "In every universe, I would find you…",
-  "And fall in love all over again.",
-  "You are my always ❤️"
-];
-let w=0,c=0;
-setInterval(()=>{
-  if(w<words.length){
-    document.getElementById("typing").innerText=
-      words[w].slice(0,c++);
-    if(c>words[w].length){w++;c=0}
-  }
-},120);
-
-// slideshow
-let slides=document.querySelectorAll(".slideshow img");
-let s=0;
-setInterval(()=>{
-  slides[s].classList.remove("active");
-  s=(s+1)%slides.length;
-  slides[s].classList.add("active");
-},3000);
-
-// no button
-const no=document.getElementById("no");
-no.addEventListener("mouseover",()=>{
-  no.style.transform=`translate(${Math.random()*200-100}px,${Math.random()*100-50}px)`;
-});
-
-// captions + yes
-const caps=[
-  "My heart already knows the answer 💓",
-  "You are my greatest blessing 🌸",
-  "Forever sounds perfect with you ✨",
-  "Say yes… and be my always 💍"
-];
-let i=0;
-
-function yes(){
-  if(i<caps.length){
-    caption.innerText=caps[i++];
-  }else{
-    letter.style.display="block";
-    fireworks();
-  }
-}
-
-// fireworks
-function fireworks(){
-  for(let i=0;i<90;i++){
-    let f=document.createElement("div");
-    f.className="firework";
-    f.style.left="50vw";
-    f.style.top="50vh";
-    f.style.setProperty("--x",`${Math.random()*700-350}px`);
-    f.style.setProperty("--y",`${Math.random()*700-350}px`);
-    document.body.appendChild(f);
-    setTimeout(()=>f.remove(),1000);
+      <p class="whisper fade">
+        — Pradeep ❤️
+      </p>
+    `;
   }
 }
 </script>
